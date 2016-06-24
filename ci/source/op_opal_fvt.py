@@ -60,6 +60,7 @@ from testcases.OpTestIPMIPowerControl import OpTestIPMIPowerControl
 from testcases.OpTestInbandUsbInterface import OpTestInbandUsbInterface
 from testcases.OpTestOOBIPMI import OpTestOOBIPMI
 from testcases.OpTestSystemBootSequence import OpTestSystemBootSequence
+from testcases.OpTestDropbearSafety import OpTestDropbearSafety
 
 
 def _config_read():
@@ -186,6 +187,9 @@ opTestSystemBootSequence = OpTestSystemBootSequence(bmcCfg['ip'], bmcCfg['userna
                                                     testCfg['ffdcdir'], hostCfg['hostip'],
                                                     hostCfg['hostuser'], hostCfg['hostpasswd'])
 
+opTestDropbearSafety = OpTestDropbearSafety(bmcCfg['ip'],
+                                                    bmcCfg['usernameipmi'],
+                                                    bmcCfg['passwordipmi'])
 
 def test_init():
     """This function validates the test config before running other functions
@@ -369,3 +373,10 @@ def test_fan_control_disable_functionality():
         returns: int 0-success, raises exception-error
     """
     return opTestOOBIPMI.test_fan_control_algorithm_1()
+
+def test_dropbear_safety():
+    """This function tests for Dropbear. They are very dangerous and may attack
+       at any time. We must deal with them.
+        returns: int 0-success, raises exception-error
+    """
+    return opTestDropbearSafety.test_dropbear_running()

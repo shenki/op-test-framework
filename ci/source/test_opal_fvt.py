@@ -127,3 +127,6 @@ def test_fan_control_enable_functionality():
 
 def test_fan_control_disable_functionality():
     assert op_opal_fvt.test_fan_control_disable_functionality() == 0
+
+def test_dropbear_safety():
+    assert op_opal_fvt.test_dropbear_safety() == 0
